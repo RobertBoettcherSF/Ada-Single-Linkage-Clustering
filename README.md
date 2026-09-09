@@ -71,7 +71,7 @@ carry `Pre` / `Post` / `Global` where meaningful (`SPARK_Mode => Off`).
 
 ## Working example
 
-Wikipedia’s five-bacteria JC69 distance matrix (\(a..e\)):
+Wikipedia’s five-bacteria JC69 distance matrix ($a..e$):
 
 |   | a | b | c | d | e |
 |---|---|---|---|---|---|
@@ -81,9 +81,9 @@ Wikipedia’s five-bacteria JC69 distance matrix (\(a..e\)):
 | d | 31 | 34 | 28 | 0 | 43 |
 | e | 23 | 21 | 39 | 43 | 0 |
 
-First merge \(a{+}b\) at height 17; updated distances to \(c,d,e\) are
-21, 31, 21. Next merges join \(c\) and \(e\) at height 21 (pairwise under
-tie-break), then \(d\) at 28. Tests assert this sequence.
+First merge $a+b$ at height 17; updated distances to $c,d,e$ are
+21, 31, 21. Next merges join $c$ and $e$ at height 21 (pairwise under
+tie-break), then $d$ at 28. Tests assert this sequence.
 
 ## Build and test
 
