@@ -34,7 +34,7 @@ After merging clusters $(r)$ and $(s)$, distances to any remaining cluster
 $(k)$ update by
 
 $$
-d[(r,s),(k)]=\min\bigl\{d[(k),(r)],\,d[(k),(s)]\bigr\}.
+d[(r,s),(k)]=\min\{d[(k),(r)],\,d[(k),(s)]\}.
 $$
 
 ## Naive algorithm (Wikipedia)
@@ -64,7 +64,6 @@ separation is required (prefer complete linkage or Ward).
 | Run | `Run_Single_Linkage` (points **or** matrix) | Full dendrogram |
 | Query | `Merge_Height` | Height of merge step |
 | Cut | `Cut_Dendrogram`, `Labels_At_Height` | $K$-cut / FoF threshold |
-
 Named exceptions: `Invalid_Argument`, `Capacity_Exceeded`.
 
 Strong typing uses domain types (`Real` digits 12, …). Public subprograms
