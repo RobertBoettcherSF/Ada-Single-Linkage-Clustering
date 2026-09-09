@@ -17,34 +17,34 @@ linkage (`ada-wards-method`).
 
 | Concern | Approach | Notes |
 | --- | --- | --- |
-| **Linkage** | \(D(X,Y)=\min_{x\in X,\,y\in Y} d(x,y)\) | Min pairwise (single link) |
-| **Input** | Points (Euclidean L2) **or** proximity matrix | `Build_Distance_Matrix` |
-| **Algorithm** | Naive proximity-matrix agglomeration | Wikipedia steps; \(O(n^3)\) |
-| **Dendrogram** | \(N-1\) merges `(Left, Right, Height, Size)` | Leaves `1..N`; merge \(m\) → id \(N+m\) |
-| **Flat cut** | By \(K\) clusters **or** height threshold \(T\) | FoF-style `Labels_At_Height` |
-| **Complexity** | Naive \(O(n^3)\) (SLINK \(O(n^2)\) equivalent OK) | Educational; \(n\le 64\) |
+| **Linkage** | $D(X,Y)=\min_{x\in X,\,y\in Y} d(x,y)$ | Min pairwise (single link) |
+| **Input** | Points (Euclidean $L_2$) **or** proximity matrix | `Build_Distance_Matrix` |
+| **Algorithm** | Naive proximity-matrix agglomeration | Wikipedia steps; $O(n^3)$ |
+| **Dendrogram** | $N-1$ merges `(Left, Right, Height, Size)` | Leaves `1..N`; merge $m \to$ id $N+m$ |
+| **Flat cut** | By $K$ clusters **or** height threshold $T$ | FoF-style `Labels_At_Height` |
+| **Complexity** | Naive $O(n^3)$ (SLINK $O(n^2)$ equivalent OK) | Educational; $n \le 64$ |
 
 ## Formula
 
-\[
+$$
 D(X,Y)=\min_{x\in X,\,y\in Y} d(x,y).
-\]
+$$
 
-After merging clusters \((r)\) and \((s)\), distances to any remaining cluster
-\((k)\) update by
+After merging clusters $(r)$ and $(s)$, distances to any remaining cluster
+$(k)$ update by
 
-\[
+$$
 d[(r,s),(k)]=\min\bigl\{d[(k),(r)],\,d[(k),(s)]\bigr\}.
-\]
+$$
 
 ## Naive algorithm (Wikipedia)
 
-1. Start with \(N\) singleton clusters, \(L(0)=0\), \(m=0\); build the
+1. Start with $N$ singleton clusters, $L(0)=0$, $m=0$; build the
    proximity matrix of pairwise distances.
-2. Find the most similar pair \((r),(s)\) with minimum \(d[(i),(j)]\).
-3. \(m:=m+1\); merge into clustering \(m\); set \(L(m)=d[(r),(s)]\).
-4. Update the matrix: delete rows/cols of \(r,s\); set new distances
-   \(d[(r,s),k]=\min(d[k,r],d[k,s])\).
+2. Find the most similar pair $(r),(s)$ with minimum $d[(i),(j)]$.
+3. $m:=m+1$; merge into clustering $m$; set $L(m)=d[(r),(s)]$.
+4. Update the matrix: delete rows/cols of $r,s$; set new distances
+   $d[(r,s),k]=\min(d[k,r],d[k,s])$.
 5. Stop when one cluster remains; otherwise go to step 2.
 
 Single linkage tends to form **long thin (chained)** clusters — useful for
@@ -59,11 +59,11 @@ separation is required (prefer complete linkage or Ward).
 | Data | `Point`, `Dataset`, `Distance_Matrix` | Observations / proximity |
 | Tree | `Merge_Record`, `Dendrogram`, `Hierarchy_Result` | Merge history |
 | Flat | `Labels`, `Parameters` | Partitions / cut height |
-| Geometry | `Euclidean_Distance`, `Build_Distance_Matrix` | L2 and pairwise matrix |
-| Linkage | `Single_Linkage_Distance`, `Cluster_Distance` | \(D(X,Y)=\min\) |
+| Geometry | `Euclidean_Distance`, `Build_Distance_Matrix` | $L_2$ and pairwise matrix |
+| Linkage | `Single_Linkage_Distance`, `Cluster_Distance` | $D(X,Y)=\min$ |
 | Run | `Run_Single_Linkage` (points **or** matrix) | Full dendrogram |
 | Query | `Merge_Height` | Height of merge step |
-| Cut | `Cut_Dendrogram`, `Labels_At_Height` | \(K\)-cut / FoF threshold |
+| Cut | `Cut_Dendrogram`, `Labels_At_Height` | $K$-cut / FoF threshold |
 
 Named exceptions: `Invalid_Argument`, `Capacity_Exceeded`.
 
